@@ -26,7 +26,7 @@ class Edit extends React.Component {
         return {
           id: data._id,
           name: data.name,
-          dob: Moment(data.dob).format('DD/MM/YYYY'),
+          dob: Moment(data.dob).format('YYYY-MM-DD'),
           salary: data.salary,
           skills: data.skills
         }
@@ -64,7 +64,7 @@ class Edit extends React.Component {
     <span className="help-block"></span>
     </div>
     <div className="form-group">
-    <input type="text" name="dob" className="form-control" placeholder="DoB - dd-mm-yyyy" value={this.state.dob} onChange={this.onChange} required/>
+    <input type="date" name="dob" className="form-control" placeholder="dd/mm/yyyy" value={this.state.dob} onChange={this.onChange} required/>
     <span className="help-block"></span>
     </div>
     <div className="form-group">

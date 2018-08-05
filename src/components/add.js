@@ -45,7 +45,7 @@ class Add extends React.Component {
     <span className="help-block"></span>
     </div>
     <div className="form-group">
-    <input type="text" name="dob" className="form-control" placeholder="DoB - dd-mm-yyyy" value={this.state.dob} onChange={this.onChange} required/>
+    <input type="date" name="dob" className="form-control" placeholder="dd/mm/yyyy" value={this.state.dob} onChange={this.onChange} required/>
     <span className="help-block"></span>
     </div>
     <div className="form-group">

@@ -1,10 +1,14 @@
 'use strict';
 
+const Employee = require('../models/employee.js');
+
 module.exports = {
     createNewEmployee: function (req, res, next) {
-        res.status(200).send({
-            a: 4
-        });
+        let employeeData = req.body;
+        Employee
+            .create(employeeData)
+            .then((employee) => res.send(employee))
+            .catch(next);
     },
 
     readEmployeeById: function (req, res, next) {

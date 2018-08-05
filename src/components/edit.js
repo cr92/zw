@@ -2,18 +2,36 @@
 'use strict';
 const React = require('react');
 const api = require('../utils/api.js');
+const Moment = require('moment');
 
-class Add extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
+      id:'',
       name: '',
       dob: '',
       salary: '',
       skills:[]
     };
+  }
+
+  componentDidMount(){
+    let empId = this.props.location.pathname.split('/')[2];
+    api.getEmployeeById(empId)
+    .then((data)=>{
+      this.setState(()=>{
+        return {
+          id: data._id,
+          name: data.name,
+          dob: Moment(data.dob).format('DD/MM/YYYY'),
+          salary: data.salary,
+          skills: data.skills
+        }
+      });
+    });
   }
   
   onChange(event) {
@@ -29,7 +47,8 @@ class Add extends React.Component {
   
   onSubmit(event){
     event.preventDefault();
-    api.createNewEmployee(this.state)
+    console.log(this.state);
+    api.editEmployeeById(this.state.id,this.state)
     .then(() => {
       this.props.history.push('/');
     })
@@ -72,11 +91,11 @@ class Add extends React.Component {
     <input type="checkbox" name="s5" className="form-control" value={this.state.s5} onChange={this.onChange}/>
     <span className="help-block"></span>
     </div>
-    <button className="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+    <button className="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
     </div>
     );
   }
 };
 
-module.exports = Add;
+module.exports = Edit;

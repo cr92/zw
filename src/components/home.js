@@ -78,7 +78,7 @@ class Home extends React.Component {
             return(
           <tr key={emp._id}>
             <td>{emp.name}</td>
-            <td>{Moment(emp.dob).format('DD-MMM-YYYY')}</td>
+            <td>{Moment(emp.dob).format('DD/MM/YYYY')}</td>
             <td>{emp.salary}</td>
             <td>{emp.skills.join(',')}</td>
             <td><button type="button" className="btn btn-sm btn-warning" onClick={this.editEmployee.bind(this,empId)}>Edit</button></td>

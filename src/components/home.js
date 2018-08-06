@@ -6,14 +6,47 @@ const api = require('../utils/api.js');
 class Home extends React.Component {
     constructor(props) {
       super(props);
+      this.prevPage = this.prevPage.bind(this);
+      this.nextPage = this.nextPage.bind(this);
       this.state = {
         employees: [],
-        filtered: []
+        filtered: [],
+        page:0,
+        totalCount:0
       }
     }
 
+    nextPage(){
+      let page = this.state.page;
+      api.getAllEmployees(5*(page+1),5*(page+2)).then((data) => {
+        if (data.length > 0) {
+          this.setState(()=>{
+          return {
+            employees:data,
+            filtered:data,
+            page:page+1
+          }
+        })
+        }
+      })
+    }
+    
+    prevPage(){
+      let page = this.state.page;
+      api.getAllEmployees(5*(page-1),5*(page)).then((data) => {
+
+          this.setState(()=>{
+          return {
+            employees:data,
+            filtered:data,
+            page:page-1
+          }
+        })
+      })
+    }
+
     componentDidMount() {
-      api.getAllEmployees().then((data) => {
+      api.getAllEmployees(5*this.state.page,5*(this.state.page+1)).then((data) => {
         this.setState(()=>{
           return {
             employees:data,
@@ -86,6 +119,8 @@ class Home extends React.Component {
           </tr>)})}
         </tbody>
       </table>
+      <button type="button" className="btn btn-sm btn-default" onClick={this.prevPage}>Prev</button>
+      <button type="button" className="btn btn-sm btn-default" onClick={this.nextPage}>Next</button>
       </div>
     )
   }

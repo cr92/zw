@@ -65,7 +65,7 @@ class Home extends React.Component {
           }
         });
       })
-      .then(()=>api.getAllEmployees())
+      .then(()=>api.getAllEmployees(5*this.state.page,5*(this.state.page+1)))
       .then((data)=>{
         this.setState(()=>{
           return {

@@ -58,6 +58,13 @@ class Home extends React.Component {
     
     deleteEmployee(empId) {
       api.deleteEmployeeById(empId)
+      .then(()=>{
+        this.setState(()=>{
+          return {
+            page:0
+          }
+        });
+      })
       .then(()=>api.getAllEmployees())
       .then((data)=>{
         this.setState(()=>{

@@ -24,6 +24,8 @@ module.exports = {
     readAllEmployees: function (req, res, next) {
         Employee
             .find({})
+            .skip(parseInt(req.query.from))
+            .limit(parseInt(req.query.to))
             .then((employees) => res.status(200).send(employees))
             .catch(next);
     },

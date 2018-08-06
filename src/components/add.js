@@ -53,23 +53,7 @@ class Add extends React.Component {
     <span className="help-block"></span>
     </div>
     <div className="form-group">
-    <input type="checkbox" name="s1" className="form-control" value={this.state.s1} onChange={this.onChange}/>
-    <span className="help-block"></span>
-    </div>
-    <div className="form-group">
-    <input type="checkbox" name="s2" className="form-control" value={this.state.s2} onChange={this.onChange}/>
-    <span className="help-block"></span>
-    </div>
-    <div className="form-group">
-    <input type="checkbox" name="s3" className="form-control" value={this.state.s3} onChange={this.onChange}/>
-    <span className="help-block"></span>
-    </div>
-    <div className="form-group">
-    <input type="checkbox" name="s4" className="form-control" value={this.state.s4} onChange={this.onChange}/>
-    <span className="help-block"></span>
-    </div>
-    <div className="form-group">
-    <input type="checkbox" name="s5" className="form-control" value={this.state.s5} onChange={this.onChange}/>
+    <input type="text" name="skills" className="form-control" placeholder="enter skills separated by ," value={this.state.skills} onChange={this.onChange} required/>
     <span className="help-block"></span>
     </div>
     <button className="btn btn-lg btn-primary btn-block" type="submit">Create</button>
